@@ -1,6 +1,7 @@
 from __future__ import with_statement 
 from PIL import Image 
 from collections import OrderedDict
+import numpy as np
 import os
 
 inputFile = './topographic_map.jpg'
@@ -23,7 +24,7 @@ for x in range(width):
       r = pixels[x,y][0]
       g = pixels[x,y][1]
       b = pixels[x,y][2]
-      if (b > 210):
+      if (b > 205):
         plotType=3 # ocean
         terrainType='TERRAIN_OCEAN'
       elif (r > 210 and g < 160):
@@ -39,17 +40,18 @@ for x in range(width):
       tiles[key] = {'x': x, 'y': height-y-1, 'r': r, 'g': g, 'b': b, 'plot': plotType, 'terrain': terrainType}
 
 # Determine whether terrain should be ocean or coast by its proximity to land plots
+coastalRange = np.arange(-coastDistanceFromLand, coastDistanceFromLand + 1, 1)
 for key, value in tiles.items():
   if (value['plot'] == 3):
     x = value['x']
     y = value['y']
-    for adjacentX in list(range(-coastDistanceFromLand, coastDistanceFromLand)):
-      for adjacentY in [-coastDistanceFromLand, coastDistanceFromLand]:
+    for adjacentX in coastalRange:
+      for adjacentY in [-coastDistanceFromLand, coastDistanceFromLand+1]:
         key = str(x + adjacentX) + '|' + str(y + adjacentY)
         if (key in tiles):
           adjacentTile = tiles[key]
           if (adjacentTile['plot'] == 0 or adjacentTile['plot'] == 1 or adjacentTile['plot'] == 2):
-            adjacentTile['terrain'] = 'TERRAIN_COAST'
+            value['terrain'] = 'TERRAIN_COAST'
  
 # save each pixel's RGB data to a file
 if (os.path.exists(rgbFile) and os.path.isfile(rgbFile)):
