@@ -3,6 +3,7 @@ WORKDIR /src
 RUN pip install pillow
 COPY . .
 EXPOSE 80
-CMD ["python", "pixel-rgb.py"]
-
-# docker run -it --rm --name rgb -v "C:\Users\<user>\git\pixel-rgb\output:/src/output" rgb
+CMD ["python", "convert_topographic_map.py"]
+ 
+# docker build -t civ4-map-from-topography
+# docker run -it --rm --name civ4-map-from-topography -v "C:\Users\<user>\git\civ4-map-from-topography\output:/src/output" civ4-map-from-topography
