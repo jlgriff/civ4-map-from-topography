@@ -27,17 +27,25 @@ for x in range(width):
       if (b > 205):
         plotType=3 # ocean
         terrainType='TERRAIN_OCEAN'
+        feature=None
+        featureVariety=0
       elif (r > 210 and g < 160):
         plotType=0 # mountain
         terrainType='TERRAIN_GRASS'
+        feature=None
+        featureVariety=0
       elif (r > 160 and g > 160):
         plotType=1 # hill
         terrainType='TERRAIN_GRASS'
+        feature='FEATURE_FOREST'
+        featureVariety=2
       else:
         plotType=2 # grassland
         terrainType='TERRAIN_GRASS'
+        feature='FEATURE_FOREST'
+        featureVariety=2
       key = str(x) + '|' + str(height-y-1)
-      tiles[key] = {'x': x, 'y': height-y-1, 'r': r, 'g': g, 'b': b, 'plot': plotType, 'terrain': terrainType}
+      tiles[key] = {'x': x, 'y': height-y-1, 'r': r, 'g': g, 'b': b, 'plot': plotType, 'terrain': terrainType, 'feature': feature, 'featureVariety': featureVariety}
 
 # Determine whether terrain should be ocean or coast by its proximity to land plots
 coastalRange = np.arange(-coastDistanceFromLand, coastDistanceFromLand + 1, 1)
@@ -46,9 +54,10 @@ for key, value in tiles.items():
     x = value['x']
     y = value['y']
     for adjacentX in coastalRange:
-      for adjacentY in [-coastDistanceFromLand, coastDistanceFromLand+1]:
+      for adjacentY in coastalRange:
         key = str(x + adjacentX) + '|' + str(y + adjacentY)
-        if (key in tiles):
+        if (key in tiles 
+        and (abs(adjacentX) != coastDistanceFromLand and abs(adjacentY) != coastDistanceFromLand)): # Ensuring that both X and Y aren't both max distance prevents a blocky look
           adjacentTile = tiles[key]
           if (adjacentTile['plot'] == 0 or adjacentTile['plot'] == 1 or adjacentTile['plot'] == 2):
             value['terrain'] = 'TERRAIN_COAST'
@@ -70,5 +79,8 @@ if (os.path.exists(plotDataFile) and os.path.isfile(plotDataFile)):
 with open(plotDataFile, 'w+') as file: 
   file.write('### Plot Info ###')
   for key, tile in tiles.items():
-    file.write('\nBeginPlot\n\tx={0},y={1}\n\tTerrainType={2}\n\tPlotType={3}\nEndPlot'.format(tile['x'],tile['y'],tile['terrain'], tile['plot']))
+    file.write('\nBeginPlot\n\tx={0},y={1}\n\tTerrainType={2}\n\tPlotType={3}'.format(tile['x'],tile['y'],tile['terrain'], tile['plot']))
+    if (tile['feature'] is not None):
+      file.write('\n\tFeatureType={0}\n\tFeatureVariety={1}'.format(tile['feature'],tile['featureVariety']))
+    file.write('\nEndPlot')
 print('Created map file with plot-types: ' + plotDataFile)
