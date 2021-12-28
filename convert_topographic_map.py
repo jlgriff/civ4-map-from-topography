@@ -37,13 +37,13 @@ for x in range(width):
       elif (r > 160 and g > 160):
         plotType=1 # hill
         terrainType='TERRAIN_GRASS'
-        feature='FEATURE_FOREST'
-        featureVariety=2
+        feature=None
+        featureVariety=0
       else:
         plotType=2 # grassland
         terrainType='TERRAIN_GRASS'
-        feature='FEATURE_FOREST'
-        featureVariety=2
+        feature=None
+        featureVariety=0
       key = str(x) + '|' + str(height-y-1)
       tiles[key] = {'x': x, 'y': height-y-1, 'r': r, 'g': g, 'b': b, 'plot': plotType, 'terrain': terrainType, 'feature': feature, 'featureVariety': featureVariety}
 
