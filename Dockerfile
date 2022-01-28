@@ -8,3 +8,4 @@ CMD ["python", "convert_topographic_map.py"]
  
 # docker build -t civ4-map-from-topography .
 # docker run -it --rm --name civ4-map-from-topography -v "C:\Users\<user>\git\civ4-map-from-topography\output:/src/output" civ4-map-from-topography
+# docker run -it --rm --name civ4-map-from-topography -v "/$(pwd)/output:/src/output" civ4-map-from-topography
