@@ -1,8 +1,6 @@
 # Introduction
 
-This application converts typical topgraphic maps into plot data that can be used to build maps for Civilization IV (the greatest video game).
-
-The Python script can either be run directly, or it can be run via Docker.
+This application converts typical topgraphic maps into plot data that can be used to build maps for the video game Civilization IV.
 
 # Selecting a Map
 
