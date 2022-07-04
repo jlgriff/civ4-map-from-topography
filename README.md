@@ -16,7 +16,7 @@ The script interprets red as mountains, yellow as hills, and green as plains whe
 
 It also creates a tile for each pixel, so it's important to degrade the resolution of your image appropriately. (That way, it doesn't take your warrior taking 750 years to cross the map.) You'll notice that the included Britain map is 128x85 pixels.
 
-## Aspect Ratio
+### Aspect Ratio
 
 One last thing: a Civ4 map must follow one of the allowed aspect ratios in order to load. It doesn't have to be one of these sizes, but must follow the same ratio. These aspect ratios are as follows:
  1. 40x24   (5x3)
