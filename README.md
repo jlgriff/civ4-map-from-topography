@@ -18,7 +18,11 @@ It also creates a tile for each pixel, so it's important to degrade the resoluti
 
 ### Aspect Ratio
 
-One last thing: a Civ4 map must follow one of the allowed aspect ratios in order to load. It doesn't have to be one of these sizes, but must follow the same ratio. These aspect ratios are as follows:
+A Civ4 map must follow one of the allowed aspect ratios in order to load. It doesn't have to be one of these exact sizes, but it still must follow the same ratio.
+
+e.g. Since an allowed aspect ratio is 8x5, a map can be 800x500.
+
+The standard map sizes and their aspect ratios are as follows:
  1. 40x24   (5x3)
  2. 52x32   (13x8)
  3. 64x40   (8x5)
