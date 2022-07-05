@@ -4,7 +4,7 @@ This application converts typical topgraphic maps into plot data that can be use
 
 # Selecting a Map
 
-Overwrite the `topographic_map.jpg` file with the topographic map .jpg that you wish to convert.
+Overwrite the `input/map.jpg` file with the topographic map .jpg that you wish to convert.
 
 Included is a `example_topographic_map.jpg` of Britain that can be used for reference.
 

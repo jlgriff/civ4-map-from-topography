@@ -4,7 +4,7 @@ from collections import OrderedDict
 import numpy as np
 import os
 
-inputFile = './topographic_map.jpg'
+inputFile = './input/map.jpg'
 rgbFile = './output/rgb_values.csv'
 plotDataFile = './output/map_plot_data.txt'
 coastDistanceFromLand = 4
