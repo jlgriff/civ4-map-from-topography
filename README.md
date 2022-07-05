@@ -2,6 +2,8 @@
 
 This application converts typical topgraphic maps into plot data that can be used to build maps for the video game Civilization IV.
 
+![Demo](https://user-images.githubusercontent.com/53009037/177265154-5ad3e9ce-59e8-4d69-835c-291fa58c8403.gif)
+
 # Selecting a Map
 
 Overwrite the `input/map.jpg` file with the topographic map .jpg that you wish to convert.
